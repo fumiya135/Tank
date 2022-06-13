@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f20382ef9e5d1914a87ddbf0707a6892
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - target: {fileID: 8920343132363348989, guid: e2a1d796851577845a63f823fb4c3b7e,
+      type: 3}
+  - expObjectPrefab: {instanceID: 0}
+  - SentryBulletPrefab: {instanceID: 0}
+  - BulletPoint: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

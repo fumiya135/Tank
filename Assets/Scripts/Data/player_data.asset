@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fd7a1b86c772c47b23612155cc663f, type: 3}
+  m_Name: player_data
+  m_EditorClassIdentifier: 
+  _level: 5
+  _hp: 20
+  _hpMax: 20
+  _exp: 3
+  _expNextLevel: 15
+  _customPoint: 2
+  _moveSpeed: 10
+  _turnSpeed: 80
+  _reloadTime: 2
+  _remainingMaxBullets: 5
+  _currentRemainingBullets: 5
+  _attackPower: 3
+  _attackCoroutine: 0.5
+  _attackBulletSpeed: 2000
+  _chargeAttackPower: 7
+  _chargeAttackCoroutine: 10
+  _chargeAttackBulletSpeed: 1000
+  _chargeTime: 2
+  _firstPlayed: 1
