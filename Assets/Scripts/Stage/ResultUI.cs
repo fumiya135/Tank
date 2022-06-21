@@ -11,16 +11,17 @@ public class ResultUI : MonoBehaviour
 
     public void Set_levelText(int value)
     {
-        levelText.text = value.ToString("00");
+        levelText.text = value.ToString(" 0");
     }
 
     public void Set_expText(int value)
     {
-        expText.text = value.ToString("00");
+        expText.text = value.ToString(" 0");
     }
 
     public void Set_customPointText(int value)
     {
-        customPointText.text = value.ToString("00");
+        customPointText.text = value.ToString(" 0");
+        Debug.Log("aaa");
     }
 }

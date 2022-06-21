@@ -6,36 +6,71 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStatusScriptable : ScriptableObject
 {
-    // 基礎ステータス
+    [Header("基礎ステータス")]
     [SerializeField] public int _level;
     [SerializeField] public int _hp;
     [SerializeField] public int _hpMax;
     [SerializeField] public int _exp;
+    [SerializeField] public int _expTotal;
     [SerializeField] public int _expNextLevel;
     [SerializeField] public int _customPoint;
 
-    // 移動、回転
+    [Header("移動、旋回")]
     [SerializeField] public float _moveSpeed;
     [SerializeField] public float _turnSpeed;
 
-    // リロード
+    [Header("リロード")]
     [SerializeField] public float _reloadTime;
     [SerializeField] public int _remainingMaxBullets;
     [SerializeField] public int _currentRemainingBullets;
 
-    // 攻撃１
+    [Header("攻撃１")]
     [SerializeField] public int _attackPower;
     [SerializeField] public float _attackCoroutine;
     [SerializeField] public float _attackBulletSpeed;
 
-    // 攻撃２
+    [Header("攻撃２")]
     [SerializeField] public int _chargeAttackPower;
     [SerializeField] public float _chargeAttackCoroutine;
     [SerializeField] public float _chargeAttackBulletSpeed;
     [SerializeField] public float _chargeTime;
 
-    // チェック
-    [SerializeField] public bool _firstPlayed = false;
+    [Header("進行度")]
+    [SerializeField] public bool _firstPlayed;
+    [SerializeField] public int _story;
+
+    //------------初期ステ--------------------------
+
+    public void Inisialize()
+    {
+        // 基礎ステータス
+        _level = 1;
+        _hp = 20;
+        _hpMax = 20;
+        _exp = 0;
+        _expTotal = 0;
+        _expNextLevel = 10;
+        _customPoint = 3;
+        // 移動・旋回
+        _moveSpeed = 10.0f;
+        _turnSpeed = 80.0f;
+        // リロード
+        _reloadTime = 2.0f;
+        _remainingMaxBullets = 5;
+        _currentRemainingBullets = 5;
+        // 攻撃１
+        _attackPower = 2;
+        _attackCoroutine = 0.5f;
+        _attackBulletSpeed = 2000;
+        // 攻撃２
+        _chargeAttackPower = 2;
+        _chargeAttackCoroutine = 10f;
+        _chargeAttackBulletSpeed = 2000;
+        _chargeTime = 2;
+        // 進行度
+        _firstPlayed = true;
+        _story = 0;
+    }
 
     //---------基礎ステータス------------------------
 
@@ -75,6 +110,15 @@ public class PlayerStatusScriptable : ScriptableObject
         _exp = value;
     }
 
+    public int Get_expTotal()
+    {
+        return this._expTotal;
+    }
+    public void Set_expTotal(int value)
+    {
+        _expTotal = value;
+    }
+
     public int Get_expNextLevel()
     {
         return this._expNextLevel;
@@ -99,7 +143,7 @@ public class PlayerStatusScriptable : ScriptableObject
     {
         return this._moveSpeed;
     }
-    public void Set_moveSpeed(int value)
+    public void Set_moveSpeed(float value)
     {
         _moveSpeed = value;
     }
@@ -108,7 +152,7 @@ public class PlayerStatusScriptable : ScriptableObject
     {
         return this._turnSpeed;
     }
-    public void Set_turnSpeed(int value)
+    public void Set_turnSpeed(float value)
     {
         _turnSpeed = value;
     }
@@ -119,7 +163,7 @@ public class PlayerStatusScriptable : ScriptableObject
     {
         return this._reloadTime;
     }
-    public void Set_reloadTime(int value)
+    public void Set_reloadTime(float value)
     {
         _reloadTime = value;
     }
@@ -209,6 +253,7 @@ public class PlayerStatusScriptable : ScriptableObject
     }
 
     //---------チェック ---------------------------------
+
     public bool Get_firstPlayed()
     {
         return this._firstPlayed;
@@ -216,5 +261,14 @@ public class PlayerStatusScriptable : ScriptableObject
     public void Set_firstPlayed(bool value)
     {
         _firstPlayed = value;
+    }
+
+    public float Get_story()
+    {
+        return this._story;
+    }
+    public void Set_story(int value)
+    {
+        _story = value;
     }
 }

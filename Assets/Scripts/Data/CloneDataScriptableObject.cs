@@ -9,6 +9,8 @@ public class CloneDataScriptableObject: ScriptableObject
     // リザルト リセット用
     [SerializeField] public int _level;
     [SerializeField] public int _exp;
+    [SerializeField] public int _expTotal;
+    [SerializeField] public int _expNextLevel;
     [SerializeField] public int _customPoint;
 
     public int Get_level()
@@ -27,6 +29,24 @@ public class CloneDataScriptableObject: ScriptableObject
     public void Set_exp(int value)
     {
         _exp = value;
+    }
+
+    public int Get_expTotal()
+    {
+        return this._expTotal;
+    }
+    public void Set_expTotal(int value)
+    {
+        _expTotal = value;
+    }
+
+    public int Get_expNextLevel()
+    {
+        return this._expNextLevel;
+    }
+    public void Set_expNextLevel(int value)
+    {
+        _expNextLevel = value;
     }
 
     public int Get_customPoint()

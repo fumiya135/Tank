@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // status
+    [Header("status")]
     [SerializeField] public PlayerStatusScriptable player;
     [SerializeField] public ReinforcementScriptable reinforcement;
 
-    // reload UI
+    [Header("audioClip")]
+    [SerializeField] public AudioClip shootSE;
+    [SerializeField] public AudioClip damageSE;
+
+    [Header("reload UI")]
     public ReloadImage reloadImage;
     public ChargeImage chargeImage;
 
-    // bullet
+    [Header("bullet Prefab")]
     public GameObject bulletPrefab;
     public GameObject ChargeBulletPrefab;
 
+    [Header("Dead Explosion")]
+    public GameObject explosionPrefab;
+    public GameObject DeadUI;
+
+    private bool isDead = false;
     private bool isShoot = true;
     private bool isCharged = false;
     private float reloadStartTime = 0.0f;
@@ -26,8 +35,8 @@ public class PlayerController : MonoBehaviour
         // プレイヤーデータの初期化
         if (player.Get_firstPlayed() == false)
         {
-            player.Set_firstPlayed(true);
-            StatusInitialize();
+            player.Inisialize();
+            reinforcement.Inisialize();
         }
 
         player.Set_hp(player.Get_hpMax());
@@ -37,6 +46,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (isDead == true)
+        {
+            Dead();
+        }
+
         if (isShoot == true)
         {
             if (Input.GetMouseButtonDown(0))
@@ -95,6 +109,12 @@ public class PlayerController : MonoBehaviour
         // 残弾を１減らす処理
         int remainingBullets = player.Get_currentRemainingBullets() - 1;
         player.Set_currentRemainingBullets(remainingBullets);
+
+        if (GameObject.Find("SE") != null)
+        {
+            SeManager se = GameObject.Find("SE").GetComponent<SeManager>();
+            se.PlaySE(shootSE);
+        }
     }
 
     void ChargeAttack()
@@ -114,6 +134,11 @@ public class PlayerController : MonoBehaviour
         int remainingBullets = player.Get_currentRemainingBullets() - 1;
         player.Set_currentRemainingBullets(remainingBullets);
 
+        if (GameObject.Find("SE") != null)
+        {
+            SeManager se = GameObject.Find("SE").GetComponent<SeManager>();
+            se.PlaySE(shootSE);
+        }
     }
 
     private void ChargeTime()
@@ -122,11 +147,32 @@ public class PlayerController : MonoBehaviour
         chargeImage.IsActive(chargeStartTime);
     }
 
-    public void Deamaged(int enemyPower)
+    public void Dead()
     {
+        Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
+
+        if (DeadUI != null)
+        {
+            DeadUI.SetActive(true);
+        }
+        this.gameObject.SetActive(false);
+    }
+
+    public void Damaged(int enemyPower)
+    {
+        if (GameObject.Find("SE") != null) {
+            SeManager se = GameObject.Find("SE").GetComponent<SeManager>();
+            se.PlaySE(damageSE);
+        }
+
         int hp = player.Get_hp();
         hp -= enemyPower;
         player.Set_hp(hp);
+
+        if (player.Get_hp() <= 0)
+        {
+            isDead = true;
+        }
     }
 
     public void LevelUp()
@@ -151,7 +197,8 @@ public class PlayerController : MonoBehaviour
         int exp = player.Get_exp();
         exp += 1;
         player.Set_exp(exp);
-        if (player.Get_exp() == player.Get_expNextLevel())
+        player.Set_expTotal(player.Get_expTotal() + 1);
+        if (player.Get_exp() >= player.Get_expNextLevel())
         {
             LevelUp();
             player.Set_exp(0);
@@ -176,39 +223,5 @@ public class PlayerController : MonoBehaviour
     private float ChargeTimeValue()
     {
         return (Time.time - chargeStartTime) / player.Get_chargeAttackCoroutine();
-    }
-
-    private void StatusInitialize()
-    {
-        // 基礎ステータス
-        player._level = 1;
-        player._hp = 20;
-        player._hpMax = 20;
-        player._exp = 0;
-        player._expNextLevel = 10;
-        player._customPoint = 3;
-        // 移動・旋回
-        player._moveSpeed = 10.0f;
-        player._turnSpeed = 80.0f;
-        // リロード
-        player._reloadTime = 2.0f;
-        player._remainingMaxBullets = 5;
-        player._currentRemainingBullets = 5;
-        // 攻撃１
-        player._attackPower = 3;
-        player._attackCoroutine = 0.5f;
-        player._attackBulletSpeed = 2000;
-        // 攻撃２
-        player._chargeAttackPower = 10;
-        player._chargeAttackCoroutine = 10f;
-        player._chargeAttackBulletSpeed = 1500;
-        player._chargeTime = 2;
-
-
-        // 強化レベル
-        reinforcement.hp_level = 0;
-        reinforcement.speed_level = 0;
-        reinforcement.attack_level = 0;
-        reinforcement.reloadTime_level = 0;
     }
 }

@@ -11,8 +11,8 @@ public class EnemyControllerA : MonoBehaviour
     BoxCollider boxCollider;
 
     [SerializeField] public GameObject expObjectPrefab;
-
-    [SerializeField] public float attackDistance = 4.0f; 
+    [SerializeField] public float attackDistance = 4.0f;
+    [SerializeField] public EnemyHpUI hpUI;
 
     public bool capableAttack = false;
     public bool generateExp = false;
@@ -28,6 +28,8 @@ public class EnemyControllerA : MonoBehaviour
 
         target = GameObject.FindWithTag("Player");
         agent.speed = enemy.Get_moveSpeed();
+
+        hpUI.SetMaxHp(enemy.Get_hpMax());
     }
 
     private void Update()
@@ -69,7 +71,7 @@ public class EnemyControllerA : MonoBehaviour
         if (capableAttack == true)
         {
             PlayerController playerController = target.gameObject.GetComponent<PlayerController>();
-            playerController.Deamaged(enemy.Get_attackPower());
+            playerController.Damaged(enemy.Get_attackPower());
         }
     }
 
@@ -80,6 +82,9 @@ public class EnemyControllerA : MonoBehaviour
         deamage -= attackPower;
         enemy.Set_hp(deamage);
         //Debug.Log("enemy‚Ìhp‚Í" + enemy.Get_hp());
+
+        hpUI.gameObject.SetActive(true);
+        hpUI.SetHp(enemy.Get_hp());
     }
 
 

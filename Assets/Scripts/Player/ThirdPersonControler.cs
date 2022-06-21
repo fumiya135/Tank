@@ -6,7 +6,8 @@ public class ThirdPersonControler : MonoBehaviour
 {
     private float moveSpeed = 15;
     private float turnSpeed = 5;
-    // éãì_
+
+    // íçà”ì_
     [SerializeField] public GameObject debugLookPoint;
 
     private Rigidbody rb;
@@ -46,8 +47,11 @@ public class ThirdPersonControler : MonoBehaviour
         moveSpeed = controller.player.Get_moveSpeed();
 
         float movementInputValue = Input.GetAxis("Vertical");
-        Vector3 movement = transform.forward * movementInputValue * moveSpeed * Time.deltaTime;
-        rb.MovePosition(rb.position + movement);
+        if (movementInputValue != null)
+        {
+            Vector3 movement = transform.forward * movementInputValue * moveSpeed * Time.deltaTime;
+            rb.MovePosition(rb.position + movement);
+        }
     }
 
     void Turn()
@@ -56,8 +60,11 @@ public class ThirdPersonControler : MonoBehaviour
         turnSpeed = controller.player.Get_turnSpeed();
 
         float turnInputValue = Input.GetAxis("Horizontal");
-        float turn = turnInputValue * turnSpeed * Time.deltaTime;
-        Quaternion turnRotation = Quaternion.Euler(0, turn, 0);
-        rb.MoveRotation(rb.rotation * turnRotation);
+        if (turnInputValue != null)
+        {
+            float turn = turnInputValue * turnSpeed * Time.deltaTime;
+            Quaternion turnRotation = Quaternion.Euler(0, turn, 0);
+            rb.MoveRotation(rb.rotation * turnRotation);
+        }
     }
 }

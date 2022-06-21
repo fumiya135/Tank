@@ -16,11 +16,14 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
-        Vector3 distance;
-        Vector3 targetPos = target.transform.position;
-        distance = new Vector3(0, heightToPlayer, weightToPlayer);
-        transform.position = targetPos + distance;
+        if (target.gameObject != null)
+        {
+            Vector3 distance;
+            Vector3 targetPos = target.transform.position;
+            distance = new Vector3(0, heightToPlayer, weightToPlayer);
+            transform.position = targetPos + distance;
 
-        transform.LookAt(target);
+            transform.LookAt(target);
+        }
     }
 }

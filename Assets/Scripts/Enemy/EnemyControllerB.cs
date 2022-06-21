@@ -13,6 +13,7 @@ public class EnemyControllerB : MonoBehaviour
     [SerializeField] public GameObject expObjectPrefab;
     [SerializeField] public GameObject SentryBulletPrefab;
     [SerializeField] public GameObject BulletPoint;
+    [SerializeField] public EnemyHpUI hpUI;
     [SerializeField] public float attackDistance = 4.0f;
     [SerializeField] public float attackCoroutine = 3.0f;
 
@@ -32,6 +33,8 @@ public class EnemyControllerB : MonoBehaviour
 
         target = GameObject.FindWithTag("Player");
         agent.speed = enemy.Get_moveSpeed();
+
+        hpUI.SetMaxHp(enemy.Get_hpMax());
     }
 
     private void Update()
@@ -99,7 +102,10 @@ public class EnemyControllerB : MonoBehaviour
         int deamage = enemy.Get_hp();
         deamage -= attackPower;
         enemy.Set_hp(deamage);
-        Debug.Log("enemy‚Ìhp‚Í" + enemy.Get_hp());
+        //Debug.Log("enemy‚Ìhp‚Í" + enemy.Get_hp());
+
+        hpUI.gameObject.SetActive(true);
+        hpUI.SetHp(enemy.Get_hp());
     }
 
 

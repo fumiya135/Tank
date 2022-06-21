@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bigExplosionPrefab: {fileID: 4991322825661084357, guid: 2f6e978871a0b9a4b9e618e369a12e68,
     type: 3}
+  explosionSE: {fileID: 8300000, guid: 76ddf3278744f4645a2131ab6abdb7b5, type: 3}
   hitEnemys: []
 --- !u!54 &-6818703306222314402
 Rigidbody:

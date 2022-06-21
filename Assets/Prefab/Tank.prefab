@@ -757,9 +757,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 87eddd38afdb0524c94b5ebaa2c7652a, type: 2}
   reinforcement: {fileID: 11400000, guid: 59f02cf761dc9aa4981aa60d4b59a83d, type: 2}
+  shootSE: {fileID: 8300000, guid: bee4c60ce0055464f92ef7d567eb906c, type: 3}
+  damageSE: {fileID: 8300000, guid: 81a85b516577c974596bec6835fe547a, type: 3}
   reloadImage: {fileID: 0}
   chargeImage: {fileID: 0}
   bulletPrefab: {fileID: 5300720720340151766, guid: 80670869461c75c4dae898725fd8c55e,
     type: 3}
   ChargeBulletPrefab: {fileID: 1691063799628050801, guid: f0d42f37793257247bad923eea930f6b,
+    type: 3}
+  explosionPrefab: {fileID: 4991322825661084357, guid: 2f6e978871a0b9a4b9e618e369a12e68,
     type: 3}
