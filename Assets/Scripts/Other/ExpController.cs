@@ -8,8 +8,6 @@ public class ExpController : MonoBehaviour
     SphereCollider expObject;
     Rigidbody rigidbody;
 
-    private float deletTime = 5.0f;
-
     private void Start()
     {
         expObject = GetComponent<SphereCollider>();

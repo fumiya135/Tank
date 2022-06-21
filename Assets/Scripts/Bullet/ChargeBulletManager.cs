@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChargeBulletManager : MonoBehaviour
 {
     [SerializeField] GameObject bigExplosionPrefab;
+    [SerializeField] AudioClip explosionSE;
     public static int power;
 
     // 爆発時の複数の処理のためのリスト
@@ -33,7 +34,16 @@ public class ChargeBulletManager : MonoBehaviour
                 EnemyControllerB obj = enemy.gameObject.GetComponent<EnemyControllerB>();
                 obj.Deamaged(power);
             }
+            //Debug.Log(hitEnemys[i].gameObject.name);
         }
+
+        if (GameObject.Find("SE") != null)
+        {
+            SeManager se = GameObject.Find("SE").GetComponent<SeManager>();
+            se.PlaySE(explosionSE);
+        }
+
+        //Debug.Log(hitEnemys.Count);
 
         Destroy(this.gameObject);
         Instantiate(bigExplosionPrefab, transform.position, Quaternion.identity);
@@ -52,11 +62,27 @@ public class ChargeBulletManager : MonoBehaviour
         obj.Deamaged(power);
     }
 
+    ///  当たり判定内のEnemyをリスト化
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("EnemyA") || other.gameObject.CompareTag("EnemyB"))
         {
             hitEnemys.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("EnemyA") || other.gameObject.CompareTag("EnemyB"))
+        {
+            for (int i = 0; i < hitEnemys.Count; i++)
+            {
+                if (hitEnemys[i] == other.gameObject)
+                {
+                    hitEnemys.RemoveAt(i);
+                }
+            }
         }
     }
 }

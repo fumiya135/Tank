@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3,
     type: 3}
+  explosionSE: {fileID: 8300000, guid: 4cc27afa025a0f945831ef78bbcef621, type: 3}
 --- !u!54 &9048332932140476665
 Rigidbody:
   m_ObjectHideFlags: 0

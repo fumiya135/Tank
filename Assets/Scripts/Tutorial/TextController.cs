@@ -163,13 +163,13 @@ public class TextController : MonoBehaviour
         switch (state)
         {
             case 0:
-                Event1.active = true;
+                Event1.SetActive(true);
                 break;
             case 1:
-                Event2.active = true;
+                Event2.SetActive(true);
                 break;
             case 2:
-                Event3.active = true;
+                Event3.SetActive(true);
                 break;
             case 3:
                 finished = true;

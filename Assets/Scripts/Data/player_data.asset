@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fd7a1b86c772c47b23612155cc663f, type: 3}
   m_Name: player_data
   m_EditorClassIdentifier: 
-  _level: 5
+  _level: 11
   _hp: 20
   _hpMax: 20
-  _exp: 3
-  _expNextLevel: 15
-  _customPoint: 2
+  _exp: 11
+  _expTotal: 217
+  _expNextLevel: 17
+  _customPoint: 13
   _moveSpeed: 10
   _turnSpeed: 80
   _reloadTime: 2
@@ -26,8 +27,9 @@ MonoBehaviour:
   _attackPower: 3
   _attackCoroutine: 0.5
   _attackBulletSpeed: 2000
-  _chargeAttackPower: 7
+  _chargeAttackPower: 10
   _chargeAttackCoroutine: 10
-  _chargeAttackBulletSpeed: 1000
+  _chargeAttackBulletSpeed: 1500
   _chargeTime: 2
-  _firstPlayed: 1
+  _firstPlayed: 0
+  _story: 0

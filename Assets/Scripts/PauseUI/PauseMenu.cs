@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -10,11 +12,26 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] public GameObject resumeButton;
     [SerializeField] public GameObject menuButton;
+    [SerializeField] public GameObject audioUI;
     [SerializeField] public GameObject quitButton;
     [SerializeField] public GameObject quitText;
 
-    GameObject player;
 
+    [Header("audio alider")]
+    [SerializeField] public Slider seSlider;
+    [SerializeField] public Slider bgmSlider;
+
+    [Header("audio data")]
+    [SerializeField] public AudioValueScriptableObject data;
+
+    GameObject player;
+    GameObject gameSystem;
+
+    private void Start()
+    {
+        seSlider.value = data.Get_seValue();
+        bgmSlider.value = data.Get_bgmValue();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +46,7 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+        Set_audioValue();
     }
 
     public void Resume()
@@ -53,9 +71,20 @@ public class PauseMenu : MonoBehaviour
         player.GetComponent<ThirdPersonControler>().enabled = false;
     }
 
-    public void LoadMenu()
+    public void AudioMene()
     {
-        Debug.Log("loading");
+        resumeButton.SetActive(false);
+        menuButton.SetActive(false);
+        quitButton.SetActive(false);
+        audioUI.SetActive(true);
+    }
+
+    public void QuitAudioMene()
+    {
+        resumeButton.SetActive(true);
+        menuButton.SetActive(true);
+        quitButton.SetActive(true);
+        audioUI.SetActive(false);
     }
 
     public void QuitMenu()
@@ -76,6 +105,12 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("quit");
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Set_audioValue()
+    {
+        data.Set_seValue(seSlider.value);
+        data.Set_bgmValue(bgmSlider.value);
     }
 }

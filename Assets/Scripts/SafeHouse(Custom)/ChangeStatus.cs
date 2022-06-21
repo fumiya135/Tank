@@ -37,13 +37,43 @@ public class ChangeStatus : MonoBehaviour
     {
         player.Set_customPoint(customPoint);
 
+        //--------‹­‰»“à—e------------
+        // HP
+        int playerHp = player.Get_hpMax();
+        int hp = hp_level - reinforcement.Get_hp_level();
+        playerHp += hp * 5;        // <----‹­‰»”{—¦
+        player.Set_hpMax(playerHp);
+        Debug.Log("hp‚Í" + playerHp + "ã¸‚µ‚½B");
+
+        // Speed
+        float playerSpeed = player.Get_moveSpeed();
+        int speed = speed_level - reinforcement.Get_speed_level();
+        playerSpeed += speed * 3;       /// <----‹­‰»”{—¦
+        player.Set_moveSpeed(playerSpeed);
+        Debug.Log("speed‚Í" + playerHp + "ã¸‚µ‚½B");
+
+        // Attack
+        int playerAttack1 = player.Get_attackPower();
+        int playerAttack2 = player.Get_chargeAttackPower();
+        int attack = attack_level - reinforcement.Get_attack_level();
+        playerAttack1 += attack * 3;       // <----‹­‰»”{—¦
+        playerAttack2 += attack * 3;       //
+        player.Set_attackPower(playerAttack1);
+        player.Set_chargeAttackPower(playerAttack2);
+        Debug.Log("attack‚Í" + playerAttack1 + "ã¸‚µ‚½B");
+
+        // reloadTime
+        double playerReloadTime = player.Get_reloadTime();
+        float reloadTime = reloadTime_level - reinforcement.Get_reloadTime_level();
+        playerReloadTime -= reloadTime * 0.2;      // <-----‹­‰»”{—¦
+        player.Set_reloadTime((float)playerReloadTime);
+        Debug.Log("reloadTime‚Í" + playerReloadTime + "’Zk‚µ‚½B");
+
+        //-----------‹­‰»ƒŒƒxƒ‹‚ð•ÛŽ--------
         reinforcement.Set_hp_level(hp_level);
         reinforcement.Set_speed_level(speed_level);
         reinforcement.Set_attack_level(attack_level);
         reinforcement.Set_reloadTime_level(reloadTime_level);
-
-        // ‹­‰»“à—e
-
     }
 
     // ƒ{ƒ^ƒ“ˆ—

@@ -9,7 +9,7 @@ public class ReloadImage : MonoBehaviour
 
     public void StartReloadUi()
     {
-        gameObject.active = true;
+        gameObject.SetActive(true);
 
         reloadImage_fill.fillAmount = 0;
     }
@@ -21,6 +21,6 @@ public class ReloadImage : MonoBehaviour
 
     public void EndReloadUi()
     {
-        gameObject.active = false;
+        gameObject.SetActive(false);
     }
 }

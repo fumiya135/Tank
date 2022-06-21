@@ -20,9 +20,9 @@ public class SentryBulletManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             string objName = collision.gameObject.name;
-            Debug.Log(collision.gameObject.name);
+            //Debug.Log(collision.gameObject.name);
             PlayerController obj = collision.gameObject.GetComponent<PlayerController>();
-            obj.Deamaged(power);
+            obj.Damaged(power);
         }
         Destroy(this.gameObject);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);

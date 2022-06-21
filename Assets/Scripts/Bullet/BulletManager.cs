@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletManager : MonoBehaviour
 {
     [SerializeField] GameObject explosionPrefab;
+    [SerializeField] AudioClip explosionSE;
     public static int power;
 
     /// <summary>
@@ -31,6 +32,13 @@ public class BulletManager : MonoBehaviour
             EnemyControllerB obj = collision.gameObject.GetComponent<EnemyControllerB>();
             obj.Deamaged(power);
         }
+
+        if (GameObject.Find("SE") != null)
+        {
+            SeManager se = GameObject.Find("SE").GetComponent<SeManager>();
+            se.PlaySE(explosionSE);
+        }
+
         Destroy(this.gameObject);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         //Debug.Log("Bulletに衝突したオブジェクト：" + collision.gameObject.name);

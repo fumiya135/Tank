@@ -6,23 +6,30 @@ using UnityEngine;
 [System.Serializable]
 public class ReinforcementScriptable : ScriptableObject
 {
-    [SerializeField] public static int level = 10;
+    [SerializeField] public static int reinforce_level = 10;
 
-    public int hp_max = level;
-    public int speed_max = level;
-    public int attack_max = level;
-    public int reloadTime_max = level;
+    public int hp_max = reinforce_level;
+    public int speed_max = reinforce_level;
+    public int attack_max = reinforce_level;
+    public int reloadTime_max = reinforce_level;
 
     public int hp_level = 0;
     public int speed_level = 0;
     public int attack_level = 0;
     public int reloadTime_level = 0;
 
-    public int Get_level()
+    public void Inisialize()
     {
-        return level;
+        hp_level = 0;
+        speed_level = 0;
+        attack_level = 0;
+        reloadTime_level = 0;
     }
 
+    public int Get_level()
+    {
+        return reinforce_level;
+    }
 
     public int Get_hp_level()
     {
